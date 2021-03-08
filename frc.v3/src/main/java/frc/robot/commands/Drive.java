@@ -1,32 +1,38 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.RobotContainer;
+import frc.robot.Constants;
 
-public class Drive extends CommandBase {
-  /** Creates a new Drive. */
-  public Drive() {
+public class DriveArcade extends Command {
+  public DriveArcade() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.m_drivetrain);
   }
 
-  // Called when the command is initially scheduled.
+  // Called just before this Command runs the first time
   @Override
-  public void initialize() {}
+  protected void initialize() {
+  }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  // Called repeatedly when this Command is scheduled to run
   @Override
-  public void execute() {}
+  protected void execute() {
+    double moveSpeed = -RobotContainer.driverController.getRawAxis(Constants.DRIVER_CONTROLLER_MOVE_AXIS);
+    double rotateSpeed = RobotContainer.driverController.getRawAxis(Constants.DRIVER_CONTROLLER_ROTATE_AXIS);
+
+    RobotContainer.m_drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  protected void end(boolean interrupted) {
+    Robot.m_drivetrain.arcadeDrive(0, 0);
+  }
 
-  // Returns true when the command should end.
+  // Make this return true when this Command no longer needs to run execute()
   @Override
-  public boolean isFinished() {
+  protected boolean isFinished() {
     return false;
   }
 }
