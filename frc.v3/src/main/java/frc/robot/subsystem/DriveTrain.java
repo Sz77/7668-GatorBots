@@ -23,6 +23,7 @@ public class Drivetrain extends Subsystem {
 
   DifferentialDrive differentialDrive = null;
 
+  double maxSpeed = 0.3;
   public Drivetrain() {
     // Talons
     leftFrontTalon = new Talon(Constants.DRIVETRAIN_LEFT_FRONT_TALN);
@@ -37,7 +38,7 @@ public class Drivetrain extends Subsystem {
   }
 
   public void arcadeDrive(double moveSpeed, double rotateSpeed) {
-    differentialDrive.arcadeDrive(moveSpeed, rotateSpeed);
+    differentialDrive.arcadeDrive(maxSpeed * moveSpeed,maxSpeed * rotateSpeed);
   }
 
   @Override
