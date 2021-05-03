@@ -11,3 +11,4 @@ public class Constants {
   public static final int DRIVER_CONTROLLER = 0;
   public static final int DRIVER_CONTROLLER_MOVE_AXIS = 1; // Change for your controller
   public static final int DRIVER_CONTROLLER_ROTATE_AXIS = 2; // Change for your controller
+}
